@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <%-partial('./blocks/bootstrap_header.ejs')%>
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <title>Pocketband</title>
+  </head>
+  <body>
+
+    <div class="modal-dialog text-center">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content">
+
+          <div class="col-12 user-img">
+            <a href="/about"><img src="img/user.png"/></a>
+          </div>
+
+            <span id="login_message"></span>
+
+          <form class="col-12" action="/register" method="post">
+            <div class="form-group user_icon">
+              <input type="text" name="user" required="true" placeholder="Username" class="form-controll">
+            </div>
+
+            <div class="form-group mail_icon">
+              <input type="email" name="email" required="true" placeholder="Email" class="form-controll">
+            </div>
+
+            <div class="form-group pass_icon">
+              <input type="password" name="pass" required="true" placeholder="Password" class="form-controll">
+            </div>
+
+            <div class="form-group pass_icon">
+              <input type="password" name="passcheck" required="true" placeholder="Check Password" class="form-controll">
+            </div>
+
+            <button type="submit" name="button" class="btn"><i class="fas fa-sign-in-alt"></i>Go</button>
+          </form>
+
+          <div class="col-12 registration">
+            <a href="/">Login</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <%-partial('./blocks/bootstrap_js.ejs')%>
+    <script type="text/javascript" src="js/login.js"></script>
+  </body>
+</html>

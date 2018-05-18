@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%-partial('./blocks/bootstrap_header.ejs')%>
+    <link rel="stylesheet" href="css/home.css">
+  </head>
+  <body>
+
+    <%-partial('./blocks/navbar.ejs')%>
+
+    <form class="text-right logout-btn" action="/logout" method="post">
+        <button class="btn btn-lg btn-danger pull-right" type="submit">logout</button>
+    </form>
+
+    <div class="container">
+      <div class="row align-items-center">
+        <form class="col-6 offset-3 form-group jumbotron form-pocket" action="/add-user" method="post">
+          <p>
+            <label>session name</label>
+            <input class="form-control" type="text" name="friend" required="true"></input>
+          </p>
+          <p class="text-center">
+              <button class="btn btn-lg btn-success" type="submit">Join!</button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="container centered">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <h4 class="display-4 chapter-name">Sessions</h4>
+        </div>
+      </div>
+      <div id="sessions" class="row">
+
+      </div>
+    </div>
+
+
+    <div class="container centered">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <h4 class="display-4 chapter-name">Friends</h4>
+        </div>
+      </div>
+      <div id="friends" class="row">
+
+      </div>
+    </div>
+
+    <div class="container centered">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <h4 class="display-4 chapter-name">Subscribers</h4>
+        </div>
+      </div>
+      <div id="subscribers" class="row">
+
+      </div>
+    </div>
+
+
+    <%-partial('./blocks/bootstrap_js.ejs')%>
+    <script type="text/javascript" src="js/card.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+  </body>
+
+  <script type="text/javascript">
+
+
+    addCard("friends", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("friends", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("friends", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+
+
+    addCard("sessions", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("sessions", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("sessions", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("sessions", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("sessions", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+
+
+    addCard("subscribers", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("subscribers", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("subscribers", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("subscribers", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+    addCard("subscribers", "title", "Lorem ipsum dolor sit amet, consectetur  veniam, quis nostrud exercitaesse cillumaborum.", "Add", "#")
+
+
+  </script>
+</html>
