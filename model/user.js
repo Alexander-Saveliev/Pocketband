@@ -6,7 +6,19 @@ exports.test = function() {
 
 exports.getFriends = function(username, cb) {
     db.get().collection('user').findOne({ username: username }, function(err, users) {
-        cb(err, users);
+        cb(err, users.friends);
+    });
+}
+
+exports.getSubscribers = function(username, cb) {
+    db.get().collection('user').findOne({ username: username }, function(err, users) {
+        cb(err, users.subscribers);
+    });
+}
+
+exports.getSubscriptions = function(username, cb) {
+    db.get().collection('user').findOne({ username: username }, function(err, users) {
+        cb(err, users.subscription);
     });
 }
 

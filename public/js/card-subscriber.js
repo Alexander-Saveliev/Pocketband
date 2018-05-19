@@ -1,4 +1,4 @@
-function addCard(toElementWithID, title, body, buttonTitle, buttonHref) {
+function addCard(toElementWithID, title, body) {
   $('<div>', {
     class: 'col-sm-6 col-md-4 col-lg-3',
     css: {
@@ -18,8 +18,8 @@ function addCard(toElementWithID, title, body, buttonTitle, buttonHref) {
         }))
         .add($('<a>', {
           class: 'btn btn-primary',
-          text: buttonTitle,
-          href: buttonHref,
+          text: "Add",
+          href: "#"
         }))
 
       })

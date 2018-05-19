@@ -73,3 +73,6 @@ app.post('/session', sessionController.join);
 app.post('/leave-session', sessionController.leaveSession);
 
 app.post('/add-user', userController.addUser);
+app.post('/get-friends', userController.getFriends);
+app.post('/get-subscribers', userController.getSubscribers);
+app.post('/get-subscriptions', userController.getSubscriptions);

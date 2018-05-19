@@ -38,3 +38,33 @@ exports.getFriends = function(req, res) {
       res.status(401).send("Unauthorized");
   }
 }
+
+exports.getSubscribers = function(req, res) {
+  if (req.session.loggedUser) {
+      userModel.getSubscribers(req.session.loggedUser, function(err, users) {
+          if (err) {
+              res.status(500).send(err);
+          } else {
+              res.status(200).send(users);
+          }
+      });
+  } else {
+      req.session.destroy();
+      res.status(401).send("Unauthorized");
+  }
+}
+
+exports.getSubscriptions = function(req, res) {
+  if (req.session.loggedUser) {
+      userModel.getSubscriptions(req.session.loggedUser, function(err, users) {
+          if (err) {
+              res.status(500).send(err);
+          } else {
+              res.status(200).send(users);
+          }
+      });
+  } else {
+      req.session.destroy();
+      res.status(401).send("Unauthorized");
+  }
+}
