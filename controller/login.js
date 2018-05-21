@@ -45,10 +45,21 @@ exports.home = function(req, res) {
     }
 }
 
+exports.contacts = function(req, res) {
+    if (req.session.loggedUser) {
+        user = req.session.loggedUser;
+        res.render('contacts.ejs', {
+    	           user: user
+    		});
+    } else {
+        req.session.destroy();
+        res.render('login.ejs');
+    }
+}
+
 exports.logout = function(req, res) {
-    console.log("'" + req.session.loggedUser + "' invalid credentials");
     req.session.destroy();
-    res.redirect('/');
+    res.status(200).send();
 }
 
 exports.about = function(req, res) {

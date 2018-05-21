@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%-partial('./blocks/bootstrap_header.ejs')%>
+    <link rel="stylesheet" href="css/home.css">
+  </head>
+  <body>
+
+    <%-partial('./blocks/navbar.ejs')%>
+
+    <button class="btn btn-lg btn-danger pull-right" id="logout" type="button">logout</button>
+
+    <div class="container">
+      <div class="row align-items-center">
+        <form class="col-6 offset-3 form-group jumbotron form-pocket" action="/get-users-by-name" method="post">
+          <p>
+            <label>Friend name</label>
+            <span id="login_message"></span>
+            <input class="form-control" type="text" name="username" required="true"></input>
+          </p>
+          <p class="text-center">
+              <button id="send" class="btn btn-lg btn-success" type="submit">Find</button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="container centered">
+      <div id="jq_find" class="row">
+
+      </div>
+    </div>
+
+
+    <div class="container centered">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <h4 class="display-4 chapter-name">Friends</h4>
+        </div>
+      </div>
+      <div id="jq_friends" class="row">
+
+      </div>
+    </div>
+
+    <div class="container centered">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <h4 class="display-4 chapter-name">Subscribers</h4>
+        </div>
+      </div>
+      <div id="jq_subscribers" class="row">
+
+      </div>
+    </div>
+
+    <div class="container centered">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <h4 class="display-4 chapter-name">Subscriptions</h4>
+        </div>
+      </div>
+      <div id="jq_subscriptions" class="row">
+
+      </div>
+    </div>
+
+
+    <%-partial('./blocks/bootstrap_js.ejs')%>
+    <script type="text/javascript" src="js/cards.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/contacts.js"></script>
+  </body>
+
+</html>

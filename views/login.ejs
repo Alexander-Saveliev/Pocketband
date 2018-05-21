@@ -18,9 +18,10 @@
             <a href="/about"><img src="img/user.png"/></a>
           </div>
 
-          <span id="login_message"></span>
 
           <form class="col-12" action="/home" method="post">
+            <span id="login_message"></span>
+
             <div class="form-group user_icon">
               <input type="text" name="user" required="true" placeholder="Username" class="form-controll">
             </div>
@@ -29,7 +30,7 @@
               <input type="password" name="pass" required="true" placeholder="Password" class="form-controll">
             </div>
 
-            <button type="submit" name="button" class="btn"><i class="fas fa-sign-in-alt"></i>Login</button>
+            <button id="send" type="submit" name="button" class="btn"><i class="fas fa-sign-in-alt"></i>Login</button>
           </form>
 
           <div class="col-12 registration">

@@ -1,9 +1,5 @@
 var db = require('./db');
 
-exports.test = function() {
-  console.log("OK");
-}
-
 exports.getFriends = function(username, cb) {
     db.get().collection('user').findOne({ username: username }, function(err, users) {
         cb(err, users.friends);
@@ -34,7 +30,6 @@ function isExist(element, array) {
 
     return found;
 }
-
 
 exports.all = function (cb) {
     db.get().collection('user').find().toArray(function (err, docs) {
@@ -69,7 +64,7 @@ exports.addUser = function(user, cb) {
 exports.addFriend = function(user_name, friend_name, cb) {
     db.get().collection('user').findOne({ username: friend_name }, function (err, friend) {
         if (err) {
-            cb(err);
+            cb("Error", err);
         } else if (!friend) {
             cb("Can't see user");
         } else {
@@ -80,7 +75,7 @@ exports.addFriend = function(user_name, friend_name, cb) {
 
             db.get().collection('user').findOne({ username: user_name }, function (err, user) {
                 if (err) {
-                    cb(err);
+                    cb("Error", err);
                 } else if (!user) {
                     cb("Can't see user")
                 } else {
@@ -89,7 +84,9 @@ exports.addFriend = function(user_name, friend_name, cb) {
                       username: user.username
                     }
 
-                    if (isExist(userUser, friend.subscription)) {
+                    if (isExist(userUser, friend.subscribers) || isExist(userUser, friend.friends)) {
+                        return cb("You already asked");
+                    } else if (isExist(userUser, friend.subscription)) {
                         // remove from subscribers to friends
                         db.get().collection('user').updateOne(
                             {"username": user_name},
@@ -133,7 +130,7 @@ exports.addFriend = function(user_name, friend_name, cb) {
                         );
                     }
 
-                    cb("");
+                    cb("Friend was added");
                 }
             });
         }

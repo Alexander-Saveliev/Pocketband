@@ -8,15 +8,13 @@
 
     <%-partial('./blocks/navbar.ejs')%>
 
-    <form class="text-right logout-btn" action="/logout" method="post">
-        <button class="btn btn-lg btn-danger pull-right" type="submit">logout</button>
-    </form>
+    <button class="btn btn-lg btn-danger pull-right" id="logout" type="button">logout</button>
 
     <div class="container">
       <div class="row align-items-center">
-        <form class="col-6 offset-3 form-group jumbotron form-pocket" action="/add-user" method="post">
+        <form class="col-6 offset-3 form-group jumbotron form-pocket" action="" method="post">
           <p>
-            <label>session name</label>
+            <label>Find session</label>
             <input class="form-control" type="text" name="friend" required="true"></input>
           </p>
           <p class="text-center">
@@ -38,100 +36,6 @@
     </div>
 
 
-    <div class="container centered">
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <h4 class="display-4 chapter-name">Friends</h4>
-        </div>
-      </div>
-      <div id="jq_friends" class="row">
-
-      </div>
-    </div>
-
-    <div class="container centered">
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <h4 class="display-4 chapter-name">Subscriptions</h4>
-        </div>
-      </div>
-      <div id="jq_subscriptions" class="row">
-
-      </div>
-    </div>
-
-    <div class="container centered">
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <h4 class="display-4 chapter-name">Subscribers</h4>
-        </div>
-      </div>
-      <div id="jq_subscribers" class="row">
-
-      </div>
-    </div>
-
-
     <%-partial('./blocks/bootstrap_js.ejs')%>
-    <script type="text/javascript" src="js/card-subscriber.js"></script>
   </body>
-
-  <script type="text/javascript">
-    function httpRequest(method, url, body, errorMsg, callback) {
-    	var http = new XMLHttpRequest();
-    	http.open(method, url, true);
-    	http.setRequestHeader('Content-type', 'application/json');
-    	http.addEventListener('readystatechange', processRequest, false);
-    	http.send(body);
-
-    	function processRequest() {
-    		if (http.readyState == 4) {
-    			if (http.status == 200) {
-    				try {
-    					callback(JSON.parse(http.responseText));
-    				} catch (e) {
-    					callback();
-    				}
-    			} else {
-    				console.warn(errorMsg);
-    				console.warn(http.responseText);
-    			}
-    		}
-    	}
-    }
-
-    function addFriends() {
-      httpRequest('post', '/get-friends', '', 'error loading friends', function( data ) {
-        console.log(data);
-
-        $(data).each(function(i, element) {
-          addCard('jq_friends', element.username, element.id);
-        });
-      });
-    }
-
-    function addSubscribers() {
-      httpRequest('post', '/get-subscribers', '', 'error loading friends', function( data ) {
-        console.log(data);
-
-        $(data).each(function(i, element) {
-          addCard('jq_subscribers', element.username, element.id);
-        });
-      });
-    }
-
-    function addSubscriptions() {
-      httpRequest('post', '/get-subscriptions', '', 'error loading friends', function( data ) {
-        console.log(data);
-
-        $(data).each(function(i, element) {
-          addCard('jq_subscriptions', element.username, element.id);
-        });
-      });
-    }
-
-    addFriends();
-    addSubscribers();
-    addSubscriptions();
-  </script>
 </html>

@@ -65,6 +65,8 @@ app.post("/register", registerController.addNewUser);
 app.get("/home", loginController.home);
 app.post("/home", loginController.home);
 
+app.get("/contacts", loginController.contacts);
+
 app.get("/about", loginController.about);
 
 app.post("/logout", loginController.logout);
@@ -76,3 +78,4 @@ app.post('/add-user', userController.addUser);
 app.post('/get-friends', userController.getFriends);
 app.post('/get-subscribers', userController.getSubscribers);
 app.post('/get-subscriptions', userController.getSubscriptions);
+app.post('/get-users-by-name', userController.getUsersByName);

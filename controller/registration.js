@@ -24,10 +24,8 @@ exports.addNewUser = function(req, res) {
         return res.status(400).send("Passwords should be equal");
     }
 
-
     user.findByName(userName, function(err, doc) {
         if (err) {
-            console.log("Login error" + err);
             return res.status(500).send("Registration error");
         }
         if (doc) {
@@ -49,17 +47,16 @@ exports.addNewUser = function(req, res) {
 
             user.addUser(newUser, function(err) {
                 if (err) {
-                    console.log("Login error" + err);
                     return res.sendStatus(500).send("Registration error");
+                } else {
+                    password.addPasword(newPassword, function(err) {
+                        if (err) {
+                            return res.sendStatus(500).send("Registration error");
+                        }
+                        req.session.loggedUser= newUser.username;
+                        return res.status(200).send();
+                    });
                 }
-            });
-
-            password.addPasword(newPassword, function(err) {
-                if (err) {
-                    console.log("Login error" + err);
-                    return res.sendStatus(500).send("Registration error");
-                }
-                return res.status(200);
             });
         }
     });

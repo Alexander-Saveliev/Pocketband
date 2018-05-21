@@ -1,10 +1,9 @@
-var db = require('./db');
+var db       = require('./db');
 var ObjectID = require('mongodb').ObjectID;
-var bcrypt = require('bcrypt');
-var fs = require('fs');
+var bcrypt   = require('bcrypt');
+var fs       = require('fs');
 
 var salt = fs.readFileSync(__dirname + '/hash.txt', 'utf-8');
-
 
 exports.findByName = function(name, cb) {
     db.get().collection('password').findOne({ username: name }, function (err, doc) {
