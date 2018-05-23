@@ -1,4 +1,5 @@
 var db = require('./db');
+var ObjectID = require('mongodb').ObjectID;
 
 exports.getFriends = function(username, cb) {
     db.get().collection('user').findOne({ username: username }, function(err, users) {
@@ -58,6 +59,37 @@ exports.findByMail = function(email, cb) {
 exports.addUser = function(user, cb) {
     db.get().collection('user').insert(user, function(err) {
         cb(err);
+    });
+}
+
+exports.addSession = function(user_id, session_id) {
+    db.get().collection('user').updateOne(
+        {"_id": ObjectID(user_id) },
+        { $addToSet: { "sessions": session_id } }
+    );
+}
+
+exports.isUsersExist = function(idArr, cb) {
+    db.get().collection('user').distinct('_id', {}, {}, function (err, allUserIds) {
+      if (err) {
+          return cb(err, null);
+      } else {
+          idArr.forEach(function(user_id) {
+              var include = false;
+
+              for (var i = 0; i < idArr.length; i++) {
+                  if (idArr[i].equals(user_id)) {
+                      include = true;
+                      break;
+                  }
+              }
+
+              if (!include) {
+                  return cb(null, false);
+              }
+          });
+          cb(null, true);
+      }
     });
 }
 

@@ -8,21 +8,14 @@
 
     <%-partial('./blocks/navbar.ejs')%>
 
-    <button class="btn btn-lg btn-danger pull-right" id="logout" type="button">logout</button>
-
-    <div class="container">
-      <div class="row align-items-center">
-        <form class="col-6 offset-3 form-group jumbotron form-pocket" action="" method="post">
-          <p>
-            <label>Find session</label>
-            <input class="form-control" type="text" name="friend" required="true"></input>
-          </p>
-          <p class="text-center">
-              <button class="btn btn-lg btn-success" type="submit">Join!</button>
-          </p>
-        </form>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-lg btn-success float-left action-button" onclick='location.href = "/create-session";' id="create session" type="button">create session</button>
+        <button class="btn btn-lg btn-danger float-right action-button" id="logout" type="button">logout</button>
       </div>
     </div>
+
+
 
     <div class="container centered">
       <div class="row">
@@ -35,7 +28,10 @@
       </div>
     </div>
 
-
     <%-partial('./blocks/bootstrap_js.ejs')%>
+    <script type="text/javascript" src="js/cards.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
+
   </body>
 </html>

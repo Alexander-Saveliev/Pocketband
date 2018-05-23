@@ -3,7 +3,6 @@ var userModel = require('../model/user');
 
 exports.addUser = function(req, res) {
     if (req.session.loggedUser) {
-        console.log(req.body);
         var user = req.session.loggedUser;
         var friend = req.body.friend;
 

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%-partial('./blocks/bootstrap_header.ejs')%>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/session_creater.css">
+  </head>
+  <body>
+
+    <%-partial('./blocks/navbar.ejs')%>
+
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-lg btn-danger float-right action-button" id="logout" type="button">logout</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container centered col-6">
+        <form action="/create-session" method="post">
+          <button type="submit" class="btn btn-success complete-button" id="send">Complete</button>
+          <span id="session-creater-message"></span>
+
+          <div class="form-group">
+            <!-- <label for="session-name">Session name</label> -->
+            <input type="text" name="name" class="form-control" id="session-name" placeholder="Enter session name">
+          </div>
+
+          <div class="form-group">
+            <!-- <label for="session-description">Description</label> -->
+            <input type="text" name="description" class="form-control" id="session-description" placeholder="Enter description">
+          </div>
+
+        </form>
+      </div>
+
+
+      <div class="container centered">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <h4 class="display-4 chapter-name">Participants</h4>
+          </div>
+        </div>
+        <div id="jq_participants" class="row">
+
+        </div>
+      </div>
+
+      <div class="container centered">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <h4 class="display-4 chapter-name">Friends</h4>
+          </div>
+        </div>
+        <div id="jq_friends" class="row">
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <%-partial('./blocks/bootstrap_js.ejs')%>
+    <script type="text/javascript" src="js/cards.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/sessionCreater.js"></script>
+
+  </body>
+</html>

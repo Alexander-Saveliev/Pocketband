@@ -57,6 +57,18 @@ exports.contacts = function(req, res) {
     }
 }
 
+exports.createSession = function(req, res) {
+    if (req.session.loggedUser) {
+        user = req.session.loggedUser;
+        res.render('session_creater.ejs', {
+    	           user: user
+    		});
+    } else {
+        req.session.destroy();
+        res.render('login.ejs');
+    }
+}
+
 exports.logout = function(req, res) {
     req.session.destroy();
     res.status(200).send();

@@ -38,6 +38,7 @@ exports.addNewUser = function(req, res) {
                 friends: [],
                 subscribers: [],
                 subscription: [],
+                sessions: [],
                 registrationData: Date()
             };
             var newPassword = {

@@ -4,10 +4,6 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-#logout {
-  margin: 30px 20px;
-}
-
 .card {
   margin: 10px;
 }
@@ -26,4 +22,8 @@ body {
   color: red;
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.action-button {
+  margin: 30px 100px;
 }

@@ -75,7 +75,6 @@ $( '#logout' ).click(function() {
 
 //jquery почемуто здесь не работает
 $('body').on('click', '.add-friend-card', function() {
-  console.log("#");
   var username = $(this).prev().prev().text();
 
   httpRequest('post', '/add-user', `{"friend": "${username}"}`, 'logout error', function( data ) {

@@ -52,10 +52,11 @@ db.connect('mongodb://localhost:27017', function(err) {
 
 /////////////////  API  /////////////////
 
-var loginController    = require("./controller/login");
-var sessionController  = require("./controller/session");
-var registerController = require("./controller/registration");
-var userController     = require("./controller/user");
+var loginController          = require("./controller/login");
+var sessionController        = require("./controller/session");
+var registerController       = require("./controller/registration");
+var userController           = require("./controller/user");
+var sessionCreaterController = require("./controller/session_creater")
 
 app.get("/", loginController.login);
 
@@ -69,10 +70,16 @@ app.get("/contacts", loginController.contacts);
 
 app.get("/about", loginController.about);
 
+app.get('/create-session', loginController.createSession);
+
 app.post("/logout", loginController.logout);
 
 app.post('/session', sessionController.join);
 app.post('/leave-session', sessionController.leaveSession);
+
+app.post('/create-session', sessionCreaterController.createSession);
+
+app.post('/get-sessions', sessionCreaterController.getSession);
 
 app.post('/add-user', userController.addUser);
 app.post('/get-friends', userController.getFriends);

@@ -1,0 +1,22 @@
+form {
+  margin: 50px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group input {
+  height: 42px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.complete-button {
+  margin-bottom: 30px;
+}
+
+#send {
+  float: left;
+  margin-bottom: 50px;
+}
