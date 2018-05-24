@@ -14,6 +14,8 @@ exports.createSession = function(req, res) {
   }
 
     if (req.session.loggedUser) {
+console.log(req.body);
+
         var name         = req.body.name;
         var description  = req.body.description;
         var user         = req.session.loggedUser;

@@ -19,7 +19,8 @@
 				<div id="session-header">
 					<h1 id="session-title"><%= sessionName %></h1>
 					<form action="/leave-session" method="post">
-						<input type="hidden" name="sessionname" value="<%= sessionName %>"></input>
+						<input type="hidden" name="sessionID" value="<%= sessionID %>"></input>
+            <input type="hidden" name="ovSessionId" value="<%= ovSessionId %>"></input>
 						<input type="hidden" name="token" value="<%= token %>"></input>
 						<button id="buttonLeaveSession" class="btn btn-large btn-danger" type="submit" onclick="leaveSession()">Leave session</button>
 					</form>
@@ -39,7 +40,7 @@
 
 <script>
 	// Get all the attributes from the template in EJS style
-	var sessionId = <%- JSON.stringify(sessionId) %>;
+	var sessionId = <%- JSON.stringify(ovSessionId) %>;
 	var token = <%- JSON.stringify(token) %>;
 	var nickName = <%- JSON.stringify(nickName) %>;
 	var userName = <%- JSON.stringify(userName) %>;

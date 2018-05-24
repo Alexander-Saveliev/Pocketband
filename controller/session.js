@@ -29,6 +29,10 @@ exports.join = function(req, res) {
         var clientData = req.session.loggedUser;
         var sessionID  = req.body.sessionID;
 
+        var tokenOptions = new TokenOptions.Builder()
+            .data(clientData)
+            .build();
+
         userModel.findByName(clientData, function(err, user) {
             if (err) {
                 return res.status(500).send(err);
@@ -54,10 +58,6 @@ exports.join = function(req, res) {
                 // Get the existing Session from the collection
                 var mySession = mapSessionIDSession[sessionID];
 
-                var tokenOptions = new TokenOptions.Builder()
-                    .data(serverData)
-                    .build();
-
                 // Generate a new token asynchronously with the recently created tokenOptions
                 mySession.generateToken(tokenOptions, function (token) {
                     // Get the existing sessionId
@@ -74,9 +74,10 @@ exports.join = function(req, res) {
                                 }
 
                                 // Return session template with all the needed attributes
-                                res.render('session.ejs', {
+                                return res.render('session.ejs', {
                                     user: req.session.loggedUser,
-                                    sessionId: ovSessionId,
+                                    ovSessionId: ovSessionId,
+                                    sessionID: sessionID,
                                     token: token,
                                     nickName: clientData,
                                     userName: req.session.loggedUser,
@@ -110,9 +111,10 @@ exports.join = function(req, res) {
                             }
                             var sessionName = session.name;
 
-                            res.render('session.ejs', {
+                            return res.render('session.ejs', {
                                 user: req.session.loggedUser,
-                                sessionId: ovSessionId,
+                                ovSessionId: ovSessionId,
+                                sessionID: sessionID,
                                 token: token,
                                 nickName: clientData,
                                 userName: req.session.loggedUser,
@@ -132,15 +134,17 @@ exports.leaveSession = function(req, res) {
         res.render('index.ejs');
     } else {
         // Retrieve params from POST body
-        var sessionName = req.body.sessionname;
-        var token = req.body.token;
-        console.log('Removing user | {sessionName, token}={' + sessionName + ', ' + token + '}');
+        var sessionID = req.body.sessionID;
+        var token     = req.body.token;
+
+        console.log("id " + sessionID);
+        console.log("token " + token);
 
         // If the session exists
-        var mySession = mapSessionNameSession[sessionName];
+        var mySession = mapSessionIDSession[sessionID];
         if (mySession) {
-            mySession.getSessionId(function (sessionId) {
-                var tokens = mapSessionIdTokens[sessionId];
+            mySession.getSessionId(function (ovSessionId) {
+                var tokens = mapSessionIdTokens[sessionID];
                 if (tokens) {
                     var index = tokens.indexOf(token);
 
@@ -148,16 +152,14 @@ exports.leaveSession = function(req, res) {
                     if (index !== -1) {
                         // Token removed!
                         tokens.splice(index, 1);
-                        console.log(sessionName + ': ' + mapSessionIdTokens[sessionId].toString());
                     } else {
                         var msg = 'Problems in the app server: the TOKEN wasn\'t valid';
                         console.log(msg);
                         res.redirect('/home');
                     }
-                    if (mapSessionIdTokens[sessionId].length == 0) {
+                    if (mapSessionIdTokens[sessionID].length == 0) {
                         // Last user left: session must be removed
-                        console.log(sessionName + ' empty!');
-                        delete mapSessionNameSession[sessionName];
+                        delete mapSessionIDSession[sessionID];
                     }
                     res.redirect('/home');
                 } else {

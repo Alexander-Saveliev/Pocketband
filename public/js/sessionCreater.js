@@ -4,6 +4,8 @@ $( '#logout' ).click(function() {
   });
 });
 
+var participants = [];
+
 $('form').submit(function(e) {
     $('#send').hide();
     $('#session-creater-message').html('<img src="img/loading.gif" alt="">');
@@ -27,8 +29,6 @@ $('form').submit(function(e) {
     e.preventDefault();
 });
 
-var participants = [];
-
 function addFriends() {
   httpRequest('post', '/get-friends', '', 'error loading friends', function( data ) {
     $(data).each(function(i, element) {
@@ -42,10 +42,11 @@ $('body').on('click', '.add-friend-card', function() {
   if ($.inArray(userID, participants) != -1) {
     $('#session_creater_message').text("This person is here already");
   } else {
+    participants.push(userID);
+    console.log(participants);
     var username = $(this).prev().prev().text();
-
+    $(this).parent().parent().parent().detach();
     removeCardSubscriber('jq_participants', username, "", userID);
-    $(this).parent().parent().detach();
   }
 });
 
@@ -53,13 +54,13 @@ $('body').on('click', '.remove-friend-card', function() {
   var username = $(this).prev().prev().text();
   var userID = $(this).attr('id');
 
-  var i = participants.indexOf(username);
+  var i = participants.indexOf(userID);
   if (i != -1) {
 	     participants.splice(i, 1);
   }
 
+  $(this).parent().parent().parent().detach();
   addCardFriendWithButtonId('jq_friends', username, "You can add this person", userID);
-  $(this).parent().parent().detach();
 });
 
 addFriends();

@@ -9,7 +9,6 @@ $(function() {
           url: $form.attr('action'),
           data: $form.serialize()
         }).done(function() {
-          console.log("a");
           window.location = "/";
         }).fail(function( data ) {
           $('#send').show();

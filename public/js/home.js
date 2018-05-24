@@ -18,8 +18,9 @@ $('body').on('click', '.join-session-card', function() {
   var username = $(this).prev().prev().text();
   var sessionId = $(this).attr('id');
 
-  httpRequest('post', '/session', `{"sessionID": "${sessionId}"}`, 'logout error', function( data ) {
-    clearUsers();
-    showUsers();
+  httpRequestRaw('post', '/session', `{"sessionID": "${sessionId}"}`, 'logout error', function( data ) {
+    document.open();
+    document.write(data);
+    document.close();
   });
 });
