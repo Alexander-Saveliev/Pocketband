@@ -16,8 +16,9 @@ addSessions();
 
 $('body').on('click', '.join-session-card', function() {
   var username = $(this).prev().prev().text();
+  var sessionId = $(this).attr('id');
 
-  httpRequest('get', '/session', `{"friend": "${username}"}`, 'logout error', function( data ) {
+  httpRequest('post', '/session', `{"sessionID": "${sessionId}"}`, 'logout error', function( data ) {
     clearUsers();
     showUsers();
   });
