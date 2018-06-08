@@ -15,30 +15,6 @@ exports.getSession = function(session_id, cb) {
 
 exports.getAllUserSessions = function(user_id, cb) {
     db.get().collection('session').find({ 'participants': { $in: [ObjectID(user_id)] } }).toArray(function(err, sessions) {
-      console.log(sessions);
         cb(err, sessions);
     });
-
-//     db.get().collection('session').find( { },
-//                 { participants :
-//                     { $elemMatch :
-//                        { id : user_id }
-//                     }
-//                 },
-//                 function(err, sessions) {
-//                     console.log(sessions);
-//                 }
-// );
-
 }
-
-
-// db.course.find( { },
-//                 { students :
-//                     { $elemMatch :
-//                        { id : ObjectId("51780f796ec4051a536015d0"),
-//                          name : "Sam"
-//                        }
-//                     }
-//                 }
-// );

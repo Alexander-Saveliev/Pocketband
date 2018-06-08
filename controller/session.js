@@ -72,6 +72,7 @@ exports.join = function(req, res) {
                                 if (!session) {
                                     return res.status(400).send("Incorrect session");
                                 }
+                                var sessionName = session.name;
 
                                 // Return session template with all the needed attributes
                                 return res.render('session.ejs', {
@@ -81,7 +82,7 @@ exports.join = function(req, res) {
                                     token: token,
                                     nickName: clientData,
                                     userName: req.session.loggedUser,
-                                    sessionName: session.name
+                                    sessionName: sessionName
                                 });
                             });
                     });

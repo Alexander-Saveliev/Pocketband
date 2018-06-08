@@ -1,7 +1,7 @@
-sudo docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.31.210:8443 openvidu/openvidu-server-kms
+sudo docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://172.20.10.2:8443 openvidu/openvidu-server-kms
 
 
-node server.js 192.168.31.210:8443 MY_SECRET
+node server.js 172.20.10.2:8443 MY_SECRET
 
 
 sudo killall -15 mongod
